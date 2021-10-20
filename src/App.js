@@ -1,22 +1,21 @@
-import React, { Component } from 'react'
-
+import React, { useState } from 'react';
 
 import Login from './LoginComponent/Login';
-import DeleteEvent from './DashBoard/DeleteEvent';
 
 import DashBoardC from './DashBoard/DashBoardC';
-class App extends Component {
-  render() {
-    return (
-      <div>
-        {/* <NavBar/> */}
-        <Login/>
-        {/* <DeleteEvent/> */}
-        {/* <DashBoardC/> */}
-      </div>
-    )
-  }
-}
 
+const App = () => {
+  const [status, setStatus] = useState('invalid');
+
+  const getStatus = (currentStatus) => {
+    setStatus(currentStatus);
+  };
+
+  return status === 'invalid' ? (
+    <Login getStatus={getStatus} />
+  ) : (
+    <DashBoardC getStatus={getStatus} />
+  );
+};
 
 export default App;
